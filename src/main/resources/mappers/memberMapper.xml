@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.care.root.mybatis.MemberMapper">
+	
+	<resultMap type="com.care.root.dto.MemberDTO" id="member">
+		<id property="id" column="id"/>
+		<result property="pw" column="pw"/>
+		<result property="addr" column="addr"/>
+	
+	</resultMap>
+	
+	<select id="getMember" resultMap="member">
+		SELECT * FROM membership WHERE id = #{id}	
+	</select>
+	
+	<select id="getList" resultMap="member">
+		SELECT * FROM membership
+	</select>
+	
+	<insert id="register">
+		INSERT INTO membership values(#{id} ,#{pw}, #{addr})
+	</insert>
+	
+	<update id="userModify">
+		UPDATE membership SET pw = #{pw} ,addr = #{addr} WHERE id = #{id}
+	</update>
+
+</mapper>
