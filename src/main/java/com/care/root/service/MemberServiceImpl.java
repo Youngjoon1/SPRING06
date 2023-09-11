@@ -104,6 +104,14 @@ public class MemberServiceImpl implements MemberService {
 		}
 	}
 	
+	public void userDel(String id) {
+		try {
+			mapper.userDel(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 	
 }

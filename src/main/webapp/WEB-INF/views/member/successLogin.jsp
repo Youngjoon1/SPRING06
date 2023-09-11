@@ -11,6 +11,6 @@
 	<%@ include file="../default/header.jsp" %>
 	<h3>로그인 성공 페이지</h3>
 	
-	<%@ include file="../default/footer.jsp" %>
+	
 </body>
 </html>

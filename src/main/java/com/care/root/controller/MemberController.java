@@ -98,6 +98,15 @@ public class MemberController implements loginSession{
 		return "redirect:list";
 	}
 	
+	@GetMapping("userDel")
+	public String userDel(String id,HttpSession session) {
+		ms.userDel(id);
+		if(id.equals(session.getAttribute(login))) {
+			session.invalidate();
+			return "redirect:login";
+		}
+		return "redirect:list";
+	}
 	
 	
 }

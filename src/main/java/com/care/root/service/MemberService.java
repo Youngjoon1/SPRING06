@@ -15,4 +15,6 @@ public interface MemberService {
 	public Map<String, Object> getMember(String id);
 	
 	public void userModify(MemberDTO dto,String[] addr);
+	
+	public void userDel(String id);
 }

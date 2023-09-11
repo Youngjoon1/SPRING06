@@ -14,4 +14,6 @@ public interface MemberMapper {
 	
 	public void userModify(MemberDTO dto);
 	
+	public void userDel(String id);
+	
 }

@@ -26,5 +26,8 @@
 	<update id="userModify">
 		UPDATE membership SET pw = #{pw} ,addr = #{addr} WHERE id = #{id}
 	</update>
-
+	
+	<delete id="userDel">
+		DELETE FROM membership WHERE id = #{id}
+	</delete>
 </mapper>
