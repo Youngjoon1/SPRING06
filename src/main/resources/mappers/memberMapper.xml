@@ -8,7 +8,7 @@
 		<id property="id" column="id"/>
 		<result property="pw" column="pw"/>
 		<result property="addr" column="addr"/>
-	
+		<result property="session_id" column="session_id" />
 	</resultMap>
 	
 	<select id="getMember" resultMap="member">
@@ -20,7 +20,7 @@
 	</select>
 	
 	<insert id="register">
-		INSERT INTO membership values(#{id} ,#{pw}, #{addr})
+		INSERT INTO membership(id,pw,addr) values(#{id} ,#{pw}, #{addr})
 	</insert>
 	
 	<update id="userModify">
@@ -30,4 +30,12 @@
 	<delete id="userDel">
 		DELETE FROM membership WHERE id = #{id}
 	</delete>
+	
+	<update id="keepLogin">
+		UPDATE membership SET session_id = #{sessionId} WHERE id = #{id}
+	</update>
+	
+	<select id="getUserSessionId" resultMap="member">
+		SELECT * FROM membership WHERE session_id = #{sessionId}
+	</select>
 </mapper>

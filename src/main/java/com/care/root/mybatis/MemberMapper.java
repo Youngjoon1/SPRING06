@@ -16,4 +16,8 @@ public interface MemberMapper {
 	
 	public void userDel(String id);
 	
+	public void keepLogin(Map<String, Object> map);
+	
+	public MemberDTO getUserSessionId(String sessionId);
+	
 }

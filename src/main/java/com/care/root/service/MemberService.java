@@ -17,4 +17,8 @@ public interface MemberService {
 	public void userModify(MemberDTO dto,String[] addr);
 	
 	public void userDel(String id);
+	
+	public void keepLogin(String sessionId,String id);
+	
+	public MemberDTO getUserSessionId(String sessionId);
 }

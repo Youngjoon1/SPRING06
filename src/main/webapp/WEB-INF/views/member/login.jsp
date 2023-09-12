@@ -16,8 +16,10 @@
 		<input type="text" name="id"><br>
 		<input type="text" name="pw"><br>
 		<input type="submit" value="로그인"><br>
-		<a href="${contextPath}/member/register">회원가입</a>
+		<a href="${contextPath}/member/register">회원가입</a><br>
+		<input type="checkbox" name="autoLogin">자동로그인
 	</form>
+	
 	
 </body>
 </html>

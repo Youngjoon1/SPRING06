@@ -17,7 +17,7 @@
    <c:choose>
    		<c:when test="${login == null }">
    			<a href=" ${contextPath }/member/login">LOGIN</a>
-   			<a href=" ${contextPath }/member/login">MEMBERS</a>
+   			<a href=" ${contextPath }/member/list">MEMBERS</a>
    		</c:when>
    		<c:otherwise>
    			<a href=" ${contextPath }/member/logout">LOGOUT</a>

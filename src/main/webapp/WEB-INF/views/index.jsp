@@ -11,6 +11,6 @@
 	
 	<h3>기본 페이지</h3>
 	
-	<%@ include file="./default/footer.jsp" %>
+	
 </body>
 </html>
