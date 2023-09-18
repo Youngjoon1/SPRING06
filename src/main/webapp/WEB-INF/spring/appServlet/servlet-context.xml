@@ -26,6 +26,7 @@
 	<beans:bean id="memInter" class="com.care.root.interceptor.MemberInterceptor" />
 	<beans:bean id="testInter" class="com.care.root.interceptor.TestIn" />
 	<beans:bean id="autoLogin" class="com.care.root.interceptor.AutoLoginInterceptor" />
+	<beans:bean id="boInter" class="com.care.root.interceptor.BoardInterceptor" />
 	<interceptors>
 		<interceptor>
 			<mapping path="/member/list"/>
@@ -41,6 +42,11 @@
 		<interceptor>
 			<mapping path="/index"/>
 			<beans:ref bean="autoLogin" />
+		</interceptor>
+			
+		<interceptor>
+			<mapping path="/board/writeForm"/>
+			<beans:ref bean="boInter" />
 		</interceptor>
 	</interceptors> 	
 	

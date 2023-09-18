@@ -72,7 +72,8 @@ public class MemberController implements loginSession{
 		}
 		//return "redirect:login";
 		session.invalidate();
-		return "redirect:/index";
+		
+		return "redirect:login";
 	}
 	
 	@GetMapping("list")

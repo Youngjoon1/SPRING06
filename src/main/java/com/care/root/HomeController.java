@@ -38,7 +38,9 @@ public class HomeController {
 	}
 	
 	@GetMapping("index")
-	public void index() {}
+	public String index() {
+		return "index";
+	}
 	
 	
 	

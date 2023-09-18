@@ -13,15 +13,18 @@
    contextPath : ${contextPath }
    
    <h1>CARE LAB</h1>
-   <a href=" ${contextPath }/index">HOME</a>
+   <a href="${contextPath }/index">HOME</a>
    <c:choose>
    		<c:when test="${login == null }">
    			<a href=" ${contextPath }/member/login">LOGIN</a>
    			<a href=" ${contextPath }/member/list">MEMBERS</a>
+   			<a href=" ${contextPath }/member/login">BOARD</a>
    		</c:when>
    		<c:otherwise>
    			<a href=" ${contextPath }/member/logout">LOGOUT</a>
    			<a href=" ${contextPath }/member/list">MEMBERS</a>
+   			<a href=" ${contextPath }/board/boardAllList">BOARD</a>
+   			
    		</c:otherwise>
    </c:choose>
    

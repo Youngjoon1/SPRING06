@@ -12,11 +12,11 @@
 	</resultMap>
 	
 	<select id="getMember" resultMap="member">
-		SELECT * FROM membership WHERE id = #{id}	
+		SELECT * FROM membership2 WHERE id = #{id}	
 	</select>
 	
 	<select id="getList" resultMap="member">
-		SELECT * FROM membership
+		SELECT * FROM membership2
 	</select>
 	
 	<insert id="register">
