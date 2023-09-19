@@ -21,6 +21,8 @@ import com.care.root.board.service.BoardFileService;
 import com.care.root.board.service.BoardService;
 import com.care.root.dto.BoardDTO;
 
+import oracle.jdbc.proxy.annotation.Post;
+
 @Controller
 @RequestMapping("board")
 public class BoardController {
@@ -62,6 +64,33 @@ public class BoardController {
 	    FileCopyUtils.copy(in, res.getOutputStream());
 	    in.close();
 	  }
+	
+	@GetMapping("modifyForm")
+	public String modifyForm(@RequestParam int writeNo,Model model) {
+		model.addAttribute("dto",bs.getContent(writeNo));
+		return "board/modifyForm";
+	}
+	
+	@PostMapping("modify")
+	public void modify(BoardDTO dto,@RequestParam MultipartFile imgFileName,HttpServletResponse res) throws Exception {
+		String msg = bs.modify(dto, imgFileName);
+		res.setContentType("text/html; charset=utf-8");
+		PrintWriter out = res.getWriter();
+		out.print(msg);
+	}
+	
+	@GetMapping("delete")
+	public void delete(@RequestParam String fileName,@RequestParam int writeNo,HttpServletResponse res) throws Exception {
+		String msg = bs.delete(fileName,writeNo);
+		res.setContentType("text/html; charset=utf-8");
+		PrintWriter out = res.getWriter();
+		out.print(msg);
+	}
+	
+	@GetMapping("replyForm")
+	public String replyForm() {
 		
+		return "board/replyForm";
+	}
 	
 }

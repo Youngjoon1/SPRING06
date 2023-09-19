@@ -15,6 +15,9 @@ public interface BoardService {
 	
 	public BoardDTO contentView(int writeNo);
 	
+	public BoardDTO getContent(int writeNo);
 	
+	public String modify(BoardDTO dto,MultipartFile file);
 	
+	public String delete(String fileName,int writeNo);
 }

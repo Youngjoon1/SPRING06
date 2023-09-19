@@ -29,4 +29,9 @@ public class BoardFileServiceImpl implements BoardFileService {
 		}
 		return FileName;
 	}
+	
+	public void deleteImage(String fileName) {
+		File file = new File(IMAGE_REPO2 +"/"+ fileName);
+		file.delete();
+	}
 }

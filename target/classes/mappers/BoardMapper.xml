@@ -27,4 +27,18 @@
 	<select id="contentView" resultMap="board">
 		SELECT * FROM mvc_board WHERE write_no = #{writeNo}
 	</select>
+	
+	<update id="upHit">
+		UPDATE mvc_board SET hit=hit+1 WHERE write_no=#{writeNo}
+	</update>
+	
+	<update id="modify">
+		UPDATE mvc_board SET title=#{title}, content=#{content}, image_file_name=#{imageFileName} WHERE write_no=#{writeNo}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM mvc_board WHERE write_no=#{writeNo}
+	</delete>
+	
+	
 </mapper>

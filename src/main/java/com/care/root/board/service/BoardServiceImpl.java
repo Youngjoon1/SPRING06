@@ -61,13 +61,68 @@ public class BoardServiceImpl implements BoardService {
 	
 	public BoardDTO contentView(int writeNo) {
 		BoardDTO dto = null;
+		upHit(writeNo);
+		
 		try {
 			dto = mapper.contentView(writeNo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return dto;
+	}
+	
+	private void upHit(int writeNo) {
+		mapper.upHit(writeNo);
 		
 	}
+	
+	public BoardDTO getContent(int writeNo) {
+		BoardDTO dto = null;
+		try {
+			dto = mapper.contentView(writeNo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dto;
+	}
+	
+	public String modify(BoardDTO dto,MultipartFile file) {
+			String FilName = "";
+		if(!file.isEmpty()) {
+			FilName =  dto.getImageFileName();
+			dto.setImageFileName(bfs.saveFile(file));
+			
+		}
+		int result = mapper.modify(dto);
+		
+		String msg = "",url="";
+		if(result == 1) {
+			bfs.deleteImage(FilName);
+			msg="수정되었습니다";
+			url="/root/board/contentView?writeNo=" + dto.getWriteNo();
+		}else {
+			bfs.deleteImage(dto.getImageFileName());
+			msg="문제 발생!!!";
+			url="/root/board/modifyForm?writeNo=" + dto.getWriteNo();
+		}
+		return bfs.getMessage(msg, url);
+	}
+	
+	public String delete(String fileName,int writeNo) {
+		String msg = "",url="";
+		int result = mapper.delete(writeNo);
+		
+		if(result == 1) {
+			bfs.deleteImage(fileName);
+			msg="삭제되었습니다";
+			url="/root/board/boardAllList";
+		}else {
+			msg="문제 발생!!!";
+			url="/root/board/contentView?writeNo=" + writeNo;
+		}
+		
+		return bfs.getMessage(msg, url);
+	}
+	
 
 }
