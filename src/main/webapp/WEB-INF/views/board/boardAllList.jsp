@@ -45,7 +45,15 @@
 				</c:choose>
 				
 				<tr>
-					<th colspan="6"><a href="${contextPath}/board/writeForm">글작성</a></th>
+					<th colspan="6">
+					
+						<c:forEach var="n" begin="1" end="${repeat}">
+							<a href="boardAllList?num=${n}">${n}</a>
+						</c:forEach>	
+					
+						<a href="${contextPath}/board/writeForm">글작성</a>
+					
+					</th>
 				</tr>
 			</table>
 		</div>

@@ -15,8 +15,17 @@
 		
 	</resultMap>
 	
+	<resultMap type="com.care.root.dto.BoardRepDTO" id="boardRep">
+		<id property="write_group" column="write_group"></id>
+		<result property="title" column="title"/>
+		<result property="content" column="content"/>
+		<result property="write_date" column="write_date"/>
+		<result property="id" column="id"/>
+	</resultMap>
+	
 	<select id="boardAllList" resultMap="board">
-		SELECT * FROM mvc_board
+		select B.* from(select rownum rn, A.* from
+		(select * from mvc_board order by write_no desc)A)B where rn between #{s} and #{e}
 	</select>
 		
 	<insert id="writeSave">
@@ -39,6 +48,18 @@
 	<delete id="delete">
 		DELETE FROM mvc_board WHERE write_no=#{writeNo}
 	</delete>
+	
+	<insert id="addReply">
+		INSERT INTO reply(id,title,content,write_group) VALUES(#{id},#{title},#{content},#{write_group})
+	</insert>
+	
+	<select id="getRepList" resultMap="boardRep">
+		SELECT * FROM reply WHERE write_group = #{write_group} ORDER BY write_date DESC
+	</select>
+	
+	<select id="selectBoardCount" resultType="Integer">
+		SELECT COUNT(*) FROM mvc_board
+	</select>
 	
 	
 </mapper>

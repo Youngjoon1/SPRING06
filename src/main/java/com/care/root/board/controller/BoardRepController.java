@@ -1,10 +1,39 @@
 package com.care.root.board.controller;
 
-import org.springframework.stereotype.Controller;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
-@RequestMapping("")
+import com.care.root.board.service.BoardService;
+import com.care.root.common.loginSession;
+import com.care.root.dto.BoardRepDTO;
+
+@RestController
+@RequestMapping("board")
 public class BoardRepController {
-
+	@Autowired BoardService bs;
+	
+	
+	@PostMapping(value="addReply",produces = "application/json; charset=utf-8")
+	public void addReply(@RequestBody BoardRepDTO dto,HttpSession session) {
+		System.out.println(dto.getContent());
+		System.out.println(dto.getTitle());
+		System.out.println(dto.getWrite_group());
+		System.out.println(session.getAttribute(loginSession.login));
+		dto.setId((String)session.getAttribute(loginSession.login));
+		bs.addReply(dto);
+	}
+	
+	@GetMapping(value="replyData/{write_group}",produces = "application/json; charset=utf-8")
+	public List<BoardRepDTO> replyData(@PathVariable int write_group) {
+		return bs.getRepList(write_group);
+	}
 }

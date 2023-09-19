@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -29,8 +30,11 @@ public class BoardController {
 	@Autowired BoardService bs; 
 	
 	@GetMapping("boardAllList")
-	public String boardAllList(Model model) {
-		model.addAttribute("list",bs.boardAllList());
+	public String boardAllList(Model model, @RequestParam(required = false,defaultValue = "1") int num) {
+		Map<String,Object> map = bs.boardAllList(num);
+		model.addAttribute("list",map.get("list"));
+		model.addAttribute("repeat",map.get("repeat"));
+		
 		return "board/boardAllList";
 	}
 	
